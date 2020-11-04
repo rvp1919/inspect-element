@@ -2,7 +2,7 @@ import { findHoveredElement } from './find-element'
 import { appendCoverElement, removeCoverElement } from './cover-element'
 
 const isKeyCombinationActive = event => {
-  return event.metaKey
+  return event.metaKey || event.ctrlKey
 }
 const onMousemove = event => {
   if (!event || !event.target || event.target === document || isKeyCombinationActive(event) === false) {
