@@ -345,7 +345,7 @@
   };
 
   const isKeyCombinationActive = event => {
-    return event.metaKey
+    return event.metaKey || event.ctrlKey
   };
   const onMousemove = event => {
     if (!event || !event.target || event.target === document || isKeyCombinationActive(event) === false) {
