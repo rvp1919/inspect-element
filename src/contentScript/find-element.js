@@ -1,14 +1,8 @@
-let mode = 'content'
-chrome.storage.sync.get(['mode'], ({ mode: _mode }) => {
-  if (_mode) mode = _mode
-})
-chrome.storage.sync.onChanged.addListener(changes => {
-  if (changes.mode && changes.mode.newValue) mode = changes.mode.newValue
-})
+import configs from '../configs'
 
 // Find and return the hovered element based on the inspect mode.
 export function findHoveredElement(event) {
-  if (mode === 'content') return event.target
+  if (configs.mode === 'content') return event.target
 
   const element = isInElement(event, event.target)
   if (element) return element

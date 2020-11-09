@@ -17,7 +17,7 @@
 
 <script>
 import ColorPicker from './color-picker'
-import configs from '../../../../configs'
+import configs, { onChange } from '../../../../configs'
 
 export default {
   name: 'color',
@@ -26,40 +26,34 @@ export default {
     ColorPicker,
   },
 
-  computed: {
-    coverColor: {
-      set(coverColor) {
-        chrome.storage.sync.set({ coverColor })
-      },
-      get() {
-        return configs.coverColor
-      },
-    },
+  data() {
+    return {
+      coverColor: configs.coverColor,
+      paddingColor: configs.paddingColor,
+      borderColor: configs.borderColor,
+      marginColor: configs.marginColor,
+    }
+  },
 
-    paddingColor: {
-      set(paddingColor) {
-        chrome.storage.sync.set({ paddingColor })
-      },
-      get() {
-        return configs.paddingColor
-      },
+  watch: {
+    coverColor() {
+      if (this.coverColor !== configs.coverColor) chrome.storage.sync.set({ coverColor: this.coverColor })
     },
-    borderColor: {
-      set(borderColor) {
-        chrome.storage.sync.set({ borderColor })
-      },
-      get() {
-        return configs.borderColor
-      },
+    paddingColor() {
+      if (this.paddingColor !== configs.paddingColor) chrome.storage.sync.set({ paddingColor: this.paddingColor })
     },
-    marginColor: {
-      set(marginColor) {
-        chrome.storage.sync.set({ marginColor })
-      },
-      get() {
-        return configs.marginColor
-      },
+    borderColor() {
+      if (this.borderColor !== configs.borderColor) chrome.storage.sync.set({ borderColor: this.borderColor })
     },
+    marginColor() {
+      if (this.marginColor !== configs.marginColor) chrome.storage.sync.set({ marginColor: this.marginColor })
+    },
+  },
+
+  created() {
+    for (const key of ['coverColor', 'paddingColor', 'borderColor', 'marginColor']) {
+      onChange(key, newValue => (this[key] = newValue))
+    }
   },
 }
 </script>

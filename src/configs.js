@@ -5,28 +5,32 @@ const configs = {
   marginColor: '#FC923580',
   mode: 'margin',
 }
+const configKeys = Object.keys(configs)
 
-chrome.storage.sync.get(['coverColor', 'paddingColor', 'borderColor', 'marginColor', 'mode'], values => {
-  if (values.coverColor) configs.coverColor = values.coverColor
-  if (values.paddingColor) configs.paddingColor = values.paddingColor
-  if (values.borderColor) configs.borderColor = values.borderColor
-  if (values.marginColor) configs.marginColor = values.marginColor
-  if (values.mode) configs.mode = values.mode
+const listeners = configKeys.reduce((listeners, key) => {
+  listeners[key] = new Set()
+  return listeners
+}, {})
 
-  // store default colors
-  chrome.storage.sync.set({ coverColor: configs.coverColor })
-  chrome.storage.sync.set({ paddingColor: configs.paddingColor })
-  chrome.storage.sync.set({ borderColor: configs.borderColor })
-  chrome.storage.sync.set({ marginColor: configs.marginColor })
-  chrome.storage.sync.set({ mode: configs.mode })
+chrome.storage.sync.get(configKeys, values => {
+  for (const key of configKeys) {
+    if (values[key]) {
+      configs[key] = values[key]
+      listeners[key].forEach(fn => fn(configs[key]))
+    } else chrome.storage.sync.set({ [key]: configs[key] })
+  }
 })
 
 chrome.storage.sync.onChanged.addListener(changes => {
-  if (changes.coverColor) configs.coverColor = changes.coverColor.newValue
-  if (changes.paddingColor) configs.paddingColor = changes.paddingColor.newValue
-  if (changes.borderColor) configs.borderColor = changes.borderColor.newValue
-  if (changes.marginColor) configs.marginColor = changes.marginColor.newValue
-  if (changes.mode) configs.mode = changes.marginColor.mode
+  for (const key of configKeys) {
+    if (changes[key]) {
+      configs[key] = changes[key].newValue
+      listeners[key].forEach(fn => fn(configs[key]))
+    }
+  }
 })
+export function onChange(key, callback) {
+  listeners[key].add(callback)
+}
 
 export default configs

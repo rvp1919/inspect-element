@@ -1,5 +1,6 @@
 <template lang="pug">
   v-app
+    key-combination
     mode
     color
 </template>

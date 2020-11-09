@@ -8,20 +8,25 @@
 </template>
 
 <script>
-import configs from '../../../../configs'
+import configs, { onChange } from '../../../../configs'
 
 export default {
   name: 'mode',
 
-  computed: {
-    mode: {
-      set(mode) {
-        chrome.storage.sync.set({ mode })
-      },
-      get() {
-        return configs.mode
-      },
+  data() {
+    return {
+      mode: configs.mode,
+    }
+  },
+
+  watch: {
+    mode() {
+      if (this.mode !== configs.mode) chrome.storage.sync.set({ mode: this.mode })
     },
+  },
+
+  created() {
+    onChange('mode', newValue => (this.mode = newValue))
   },
 }
 </script>
