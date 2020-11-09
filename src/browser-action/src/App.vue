@@ -1,11 +1,12 @@
 <template lang="pug">
   v-app
-    key-combination
+    modifier-key-combination
     mode
     color
 </template>
 
 <script>
+import modifierKeyCombination from './views/modifier-key-combination'
 import Color from './views/color'
 import Mode from './views/mode'
 
@@ -13,6 +14,7 @@ export default {
   name: 'App',
 
   components: {
+    modifierKeyCombination,
     Color,
     Mode,
   },

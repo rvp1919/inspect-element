@@ -4,6 +4,7 @@ const configs = {
   borderColor: '#DDE64880',
   marginColor: '#FC923580',
   mode: 'margin',
+  modifierKeyCombination: ['metaKey'],
 }
 const configKeys = Object.keys(configs)
 

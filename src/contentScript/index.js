@@ -1,8 +1,14 @@
 import { findHoveredElement } from './find-element'
 import { appendCoverElement, removeCoverElement } from './cover-element'
+import configs from '../configs'
+import { MODIFIER_KEYS } from '../util'
 
 const isKeyCombinationActive = event => {
-  return event.metaKey || event.ctrlKey
+  return (
+    configs.modifierKeyCombination.every(key => event[key]) &&
+    MODIFIER_KEYS.filter(key => configs.modifierKeyCombination.includes(key) === false).some(key => event[key]) ===
+      false
+  )
 }
 const onMousemove = event => {
   if (!event || !event.target || event.target === document || isKeyCombinationActive(event) === false) {
