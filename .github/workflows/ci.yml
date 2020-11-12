@@ -1,20 +1,34 @@
-name: E2E on Chrome
-on: [push]
+name: E2E
+on: push
 jobs:
-  cypress-run:
-    runs-on: ubuntu-16.04
-    name: Cypress
+  linux:
+    name: E2E
+
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        node: ['10', '12']
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout branch
+        uses: actions/checkout@master
 
-      - run: ls -l
-      - run: yarn install-all
-
-      - run: ls -l
-      - run: yarn build-all
-
-      - run: ls -l
-
-      - uses: cypress-io/github-action@v2
+      - name: Install node
+        uses: actions/setup-node@v1
         with:
-          browser: chrome
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Test
+        uses: mujo-code/puppeteer-headful@master
+        env:
+          CI: 'true'
+        with:
+          args: yarn test
