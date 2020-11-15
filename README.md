@@ -3,6 +3,9 @@
 ![E2E](https://github.com/iendeavor/inspect-element/workflows/E2E/badge.svg)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=iendeavor.inspect-element)
 
+## Demo
+![](https://user-images.githubusercontent.com/22850435/90898582-5d4e5d00-e3f9-11ea-9090-d8ed2a0077cb.gif)
+
 ## Usage
 
 1. Install this extenstion from [Chrome WebStore](https://chrome.google.com/webstore/detail/inspect-element/flgcpmeleoikcibkiaiindbcjeldcogp)
