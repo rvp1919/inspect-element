@@ -5,9 +5,9 @@ it('should inspect', async () => {
   const browser: Browser = await launch()
   const page: Page = await browser.newPage()
 
-  await page.goto('https://iendeavor.github.io/inspect-element/tests/padding-and-content-box/index.html')
+  await page.goto('https://js-cosmos.github.io/inspect-element/tests/padding-and-content-box/index.html')
   await page.keyboard.down('Meta')
-  await page.mouse.move(1, 1)
+  await page.mouse.move(10, 10)
 
   const coverStyle = (await page.evaluate(() => {
     const el = document.querySelector('#inspect-element-cover')
