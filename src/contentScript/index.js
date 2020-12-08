@@ -23,10 +23,10 @@ const onMousemove = event => {
     removeElements()
 
     requestAnimationFrame(() => {
-      appendElements(target)
+      appendElements(target, event)
     })
   } else {
-    appendElements(target)
+    appendElements(target, event)
   }
 }
 

@@ -1,9 +1,10 @@
 <template lang="pug">
-  v-app
-    modifier-key-combination
-    mode
-    color
-    sideline
+v-app
+  modifier-key-combination
+  mode
+  color
+  sideline
+  style-info
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import modifierKeyCombination from './views/modifier-key-combination'
 import Color from './views/color'
 import Mode from './views/mode'
 import Sideline from './views/sideline'
+import StyleInfo from './views/style-info'
 
 export default {
   name: 'App',
@@ -20,6 +22,7 @@ export default {
     Color,
     Mode,
     Sideline,
+    StyleInfo,
   },
 }
 </script>
