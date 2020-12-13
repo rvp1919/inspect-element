@@ -123,7 +123,12 @@ jobs:
 
     if: ${{ success() && github.ref == 'refs/heads/master' }}
 
-    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        node: ['12']
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout branch
