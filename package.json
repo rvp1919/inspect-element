@@ -24,10 +24,13 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "git diff --exit-code && git diff --staged --exit-code && yarn lint && yarn build && yarn test"
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/chrome": "^0.0.126",
     "@types/jest": "^26.0.16",
     "@types/puppeteer": "^5.4.0",
