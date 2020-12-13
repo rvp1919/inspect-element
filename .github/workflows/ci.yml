@@ -140,6 +140,9 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Release
+        run: yarn release
+
       - name: Upload and deploy
         uses: Passiverecords/chrome-extension-upload-action@1.4.1
         with:
