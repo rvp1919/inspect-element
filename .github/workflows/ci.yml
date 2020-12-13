@@ -133,6 +133,8 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@master
+        with:
+          fetch-depth: 0
 
       - name: Install node
         uses: actions/setup-node@v1
@@ -141,9 +143,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Build
-        run: yarn build
 
       - name: Setup user
         run: |
