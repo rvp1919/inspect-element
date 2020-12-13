@@ -1,4 +1,4 @@
-name: Test
+name: CI
 on: push
 jobs:
   lint:
@@ -115,3 +115,56 @@ jobs:
       # TODO: sometimes will failed
       # - name: Test
       #   run: yarn test
+
+  deployment:
+    name: Deployment
+
+    needs: [lint, linux, macos, windows]
+
+    if: ${{ success() && github.ref == 'refs/heads/master' }}
+
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        node: ['12']
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Setup user
+        run: |
+          git config --global user.email actions@users.noreply.github.com
+          git config --global user.name "Action"
+
+      - name: Release
+        run: yarn release
+
+      - name: Upload and deploy
+        uses: Passiverecords/chrome-extension-upload-action@1.4.1
+        with:
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          file-name: 'dist.zip'
+          app-id: 'flgcpmeleoikcibkiaiindbcjeldcogp'
+          publish: true
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
