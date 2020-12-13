@@ -1,128 +1,9 @@
 name: CI
 on: push
 jobs:
-  lint:
-    name: Lint
-
-    strategy:
-      matrix:
-        os: ['ubuntu-latest']
-        node: ['12']
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@master
-
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Lint
-        run: yarn lint
-
-  linux:
-    name: Linux
-
-    strategy:
-      matrix:
-        os: ['ubuntu-latest']
-        node: ['12']
-
-    runs-on: ${{ matrix.os }}
-
-    env:
-      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@master
-
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build
-        run: yarn build
-
-      - name: Test
-        uses: djp3/puppeteer-headful@master
-        with:
-          args: yarn test
-
-  macos:
-    name: MacOS
-
-    strategy:
-      matrix:
-        os: ['macos-latest']
-        node: ['12']
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@master
-
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build
-        run: yarn build
-
-      - name: Test
-        run: yarn test
-
-  windows:
-    name: Windows
-
-    strategy:
-      matrix:
-        os: ['windows-latest']
-        node: ['12']
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout branch
-        uses: actions/checkout@master
-
-      - name: Install node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Build
-        run: yarn build
-
-      # TODO: sometimes will failed
-      # - name: Test
-      #   run: yarn test
-
   deployment:
     name: Deployment
 
-    needs: [lint, linux, macos, windows]
-
-    if: ${{ success() && github.ref == 'refs/heads/master' }}
-
     strategy:
       matrix:
         os: ['ubuntu-latest']
@@ -143,7 +24,9 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn build
+        run: |
+          ls .
+          yarn build
 
       - name: Setup user
         run: |
@@ -151,17 +34,20 @@ jobs:
           git config --global user.name "Action"
 
       - name: Release
-        run: yarn release
+        run: |
+          yarn release
+          cat dist/manifest.json
+          ls .
 
-      - name: Upload and deploy
-        uses: Passiverecords/chrome-extension-upload-action@1.4.1
-        with:
-          refresh-token: ${{ secrets.REFRESH_TOKEN }}
-          client-id: ${{ secrets.CLIENT_ID }}
-          client-secret: ${{ secrets.CLIENT_SECRET }}
-          file-name: 'dist.zip'
-          app-id: 'flgcpmeleoikcibkiaiindbcjeldcogp'
-          publish: true
+      # - name: Upload and deploy
+      #   uses: Passiverecords/chrome-extension-upload-action@1.4.1
+      #   with:
+      #     refresh-token: ${{ secrets.REFRESH_TOKEN }}
+      #     client-id: ${{ secrets.CLIENT_ID }}
+      #     client-secret: ${{ secrets.CLIENT_SECRET }}
+      #     file-name: 'dist.zip'
+      #     app-id: 'flgcpmeleoikcibkiaiindbcjeldcogp'
+      #     publish: true
 
       - name: Push changes
         uses: ad-m/github-push-action@master
