@@ -167,27 +167,23 @@ jobs:
   deployment:
     name: Deployment
 
-    needs: [lint, linux, macos, windows]
-
     if: ${{ success() && github.ref == 'refs/heads/master' }}
 
-    strategy:
-      matrix:
-        os: ['ubuntu-latest']
-        node: ['12']
+    needs: [lint, linux, macos, windows]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout branch
         uses: actions/checkout@master
         with:
           fetch-depth: 0
+          ref: 'master'
 
       - name: Install node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '12'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -226,5 +222,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: 'master'
           tags: true
