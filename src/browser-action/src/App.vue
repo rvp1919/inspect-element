@@ -33,6 +33,7 @@ export default {
   min-height: 500px;
   overflow: auto;
   background: transparent;
+  z-index: 0;
 }
 
 .v-subheader {
@@ -41,5 +42,10 @@ export default {
 
 .v-list-item {
   min-height: 0;
+}
+
+.v-application.theme--light,
+.v-application--wrap .theme--light {
+  background: transparent !important;
 }
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
   ul.g-snows(v-if="new Date().getMonth() === 11 && (new Date().getDate() === 24 || new Date().getDate() === 25)")
-    - for (var i = 0; i < 20; i++) {
+    - for (var i = 0; i < 40; i++) {
       li
     - }
 </template>
@@ -8,17 +8,20 @@
 <style scoped>
 .g-snows {
   position: fixed;
-  width: 100%;
-  height: 0;
+  width: 100vw;
+  height: 100vh;
   padding-left: 0 !important;
-  background-color: transparent;
+  background-image: linear-gradient(to bottom, navy, darkgray);
+  opacity: 0.3;
+  list-style-type: none;
+  z-index: -1;
 }
 .g-snows > li {
   opacity: 0;
   position: absolute;
   top: 0;
   border-radius: 100%;
-  background-color: dodgerblue;
+  background-color: #fff;
   background-repeat: no-repeat;
   background-size: 100% auto;
   animation-name: snow-drop;
