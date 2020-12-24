@@ -4,6 +4,7 @@
     mode
     color
     sideline
+    christmas
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import modifierKeyCombination from './views/modifier-key-combination'
 import Color from './views/color'
 import Mode from './views/mode'
 import Sideline from './views/sideline'
+import Christmas from './views/christmas'
 
 export default {
   name: 'App',
@@ -20,6 +22,7 @@ export default {
     Color,
     Mode,
     Sideline,
+    Christmas,
   },
 }
 </script>
@@ -29,6 +32,7 @@ export default {
   min-width: 300px;
   min-height: 500px;
   overflow: auto;
+  background: transparent;
 }
 
 .v-subheader {
