@@ -35,7 +35,7 @@
   height: 3px;
   animation-duration: 5662ms;
   animation-delay: 3009ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(2) {
   left: 15%;
@@ -51,7 +51,7 @@
   height: 8px;
   animation-duration: 8652ms;
   animation-delay: 4982ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(4) {
   left: 72%;
@@ -59,7 +59,7 @@
   height: 12px;
   animation-duration: 8850ms;
   animation-delay: 1874ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(5) {
   left: 57%;
@@ -83,7 +83,7 @@
   height: 0px;
   animation-duration: 5610ms;
   animation-delay: 4730ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(8) {
   left: 131%;
@@ -91,7 +91,7 @@
   height: 1px;
   animation-duration: 10031ms;
   animation-delay: 1797ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(9) {
   left: 67%;
@@ -107,7 +107,7 @@
   height: 3px;
   animation-duration: 8304ms;
   animation-delay: 1198ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(11) {
   left: 39%;
@@ -115,7 +115,7 @@
   height: 10px;
   animation-duration: 7316ms;
   animation-delay: 286ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(12) {
   left: 77%;
@@ -131,7 +131,7 @@
   height: 5px;
   animation-duration: 9526ms;
   animation-delay: 1407ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(14) {
   left: 67%;
@@ -139,7 +139,7 @@
   height: 5px;
   animation-duration: 6820ms;
   animation-delay: 1377ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(15) {
   left: 28%;
@@ -163,7 +163,7 @@
   height: 11px;
   animation-duration: 11650ms;
   animation-delay: 4249ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(18) {
   left: 2%;
@@ -179,7 +179,7 @@
   height: 5px;
   animation-duration: 7618ms;
   animation-delay: 1854ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(20) {
   left: 36%;
@@ -187,7 +187,7 @@
   height: 5px;
   animation-duration: 10149ms;
   animation-delay: 3484ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(21) {
   left: 117%;
@@ -195,7 +195,7 @@
   height: 12px;
   animation-duration: 5219ms;
   animation-delay: 2973ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(22) {
   left: 74%;
@@ -211,7 +211,7 @@
   height: 7px;
   animation-duration: 7072ms;
   animation-delay: 565ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(24) {
   left: 22%;
@@ -251,7 +251,7 @@
   height: 2px;
   animation-duration: 10118ms;
   animation-delay: 2332ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(29) {
   left: 28%;
@@ -259,7 +259,7 @@
   height: 8px;
   animation-duration: 7500ms;
   animation-delay: 4571ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(30) {
   left: 124%;
@@ -267,7 +267,7 @@
   height: 12px;
   animation-duration: 10798ms;
   animation-delay: 1430ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(31) {
   left: 68%;
@@ -283,7 +283,7 @@
   height: 0px;
   animation-duration: 8362ms;
   animation-delay: 1232ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 .g-snows > li:nth-child(33) {
   left: 87%;
@@ -307,7 +307,7 @@
   height: 5px;
   animation-duration: 7538ms;
   animation-delay: 4170ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(36) {
   left: 120%;
@@ -315,7 +315,7 @@
   height: 12px;
   animation-duration: 5185ms;
   animation-delay: 2646ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(37) {
   left: 51%;
@@ -339,7 +339,7 @@
   height: 9px;
   animation-duration: 13842ms;
   animation-delay: 3059ms;
-  filter: blur(1px);
+  filter: blur(6px);
 }
 .g-snows > li:nth-child(40) {
   left: 21%;
@@ -347,7 +347,7 @@
   height: 8px;
   animation-duration: 13310ms;
   animation-delay: 1814ms;
-  filter: blur(0px);
+  filter: blur(5px);
 }
 @keyframes snow-drop {
   0% {
