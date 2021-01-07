@@ -208,15 +208,14 @@ jobs:
       - name: Release
         run: yarn release
 
-      - name: Upload and deploy
-        uses: Passiverecords/chrome-extension-upload-action@1.4.1
+      - name: Upload & publish
+        uses: mnao305/chrome-extension-upload@1.1.1
         with:
-          refresh-token: ${{ secrets.REFRESH_TOKEN }}
+          file-path: dist.zip
+          extension-id: flgcpmeleoikcibkiaiindbcjeldcogp
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
-          file-name: 'dist.zip'
-          app-id: 'flgcpmeleoikcibkiaiindbcjeldcogp'
-          publish: true
+          refresh-token: ${{ secrets.REFRESH_TOKEN }}
 
       - name: Push changes
         uses: ad-m/github-push-action@master
