@@ -224,3 +224,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'master'
           tags: true
+
+      - name: Push back to develop
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'develop'
